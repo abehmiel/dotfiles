@@ -8,6 +8,9 @@
 **/*password*
 **/*auth*
 
+# Whitelist helper scripts that aren't actual secrets
+!setup-secrets.sh
+
 # Claude/AI configs that might contain keys
 # Exclude Claude configs in home directory, but allow our agents in the repo
 .anthropic/
