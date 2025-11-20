@@ -1,0 +1,65 @@
+# API keys and secrets
+**/*key*
+**/*secret*
+**/*token*
+**/.env
+**/.env.*
+**/credentials*
+**/*password*
+**/*auth*
+
+# Claude/AI configs that might contain keys
+# Exclude Claude configs in home directory, but allow our agents in the repo
+.anthropic/
+**/.anthropic/
+
+# Allow claude/agents/ in repo, but exclude sensitive files within it
+claude/agents/.claude/
+claude/agents/**/*.local.json
+claude/agents/**/settings*.json
+claude/agents/**/*secret*
+claude/agents/**/*key*
+
+# SSH keys
+**/.ssh/
+**/id_rsa*
+**/id_ed25519*
+**/id_ecdsa*
+**/*.pem
+**/*.key
+
+# GPG keys
+**/.gnupg/
+**/secring.*
+
+# Cloud provider configs
+**/.aws/
+**/.azure/
+**/.gcloud/
+
+# Personal info that should stay local
+.secrets
+.secrets.*
+*.local
+**/.gitconfig.local
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary sync files
+.sync_running
