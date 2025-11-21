@@ -50,6 +50,31 @@ bindkey "\e\e[C" forward-word
 
 . "$HOME/.cargo/env"
 
+# Personal RAG MCP server index
+indexme() {
+    local repo_path="$PWD"
+    local collection_name=$(basename "$PWD")
+    local mcp_server_path="/Users/Abe/Projects/personal-mcp-server"
+
+    echo "📚 Indexing current directory..."
+    echo "  Repository: $repo_path"
+    echo "  Collection: $collection_name"
+    echo ""
+
+    # Navigate to the MCP server directory, run make, then return
+    (cd "$mcp_server_path" && make index REPO="$repo_path" COLLECTION="$collection_name")
+
+    local exit_code=$?
+    if [ $exit_code -eq 0 ]; then
+        echo ""
+        echo "✅ Successfully indexed $collection_name"
+    else
+        echo ""
+        echo "❌ Indexing failed with exit code $exit_code"
+        return $exit_code
+    fi
+}
+
 # >>> conda initialize (lazy-loaded) >>>
 # Lazy load conda
 conda() {
@@ -68,6 +93,5 @@ conda() {
   conda "$@"
 }
 # <<< conda initialize <<<
-
 
 . "$HOME/.local/bin/env"
