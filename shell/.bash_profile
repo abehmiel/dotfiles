@@ -44,28 +44,29 @@ alias vi='vim'
 alias bye='exit'
 alias dl='ls -lhAstr'
 
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # Keybindings
 bindkey "\e\e[D" backward-word
 bindkey "\e\e[C" forward-word
 
 . "$HOME/.cargo/env"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
+# >>> conda initialize (lazy-loaded) >>>
+# Lazy load conda
+conda() {
+  unset -f conda
+  __conda_setup="$('$HOME/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
     eval "$__conda_setup"
-else
+  else
     if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniforge3/etc/profile.d/conda.sh"
+      . "$HOME/miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="$HOME/miniforge3/bin:$PATH"
+      export PATH="$HOME/miniforge3/bin:$PATH"
     fi
-fi
-unset __conda_setup
+  fi
+  unset __conda_setup
+  conda "$@"
+}
 # <<< conda initialize <<<
 
 
